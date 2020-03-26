@@ -3,6 +3,13 @@
 # Deploy
 Please make sure to run create_database.py first. Then run serverless deploy.
 
+# Live version
+You can check it out here:
+
+metrics: https://k6a9kj8a20.execute-api.us-east-1.amazonaws.com/dev/api/metrics/ratings/avg
+ui: https://k6a9kj8a20.execute-api.us-east-1.amazonaws.com/dev/
+
+
 ## Data format
 * According to the pdf we pick the keys Q8A, Q8B and Q8C from the data. The pdf claims that the range of values is between 1 - 5.
 Inspecting the data i can see that they are actually from 0 - 6. So we will use the following rules from the key Q10A:
