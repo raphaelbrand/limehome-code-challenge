@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Airport metrics</title>
+    <meta name="description" content="Visualizing metrics for the limehome challenge">
+    <meta name="author" content="Raphael Brand">
+
+    <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+
+</head>
+
+<body>
+<canvas id="airportChart" width="400" height="400"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js"></script>
+
+<script>
+
+
+fetch('api/metrics/ratings/avg')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+        labels = [];
+        values = [];
+        for(const metric of data.metrics) {
+            labels.push(metric.facility);
+            values.push(metric.avgRating);
+        }
+
+        var ctx = document.getElementById('airportChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Average rating per facility',
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                    data: values
+                }],
+            }
+        });
+  });
+</script>
+</body>
+</html>
+
